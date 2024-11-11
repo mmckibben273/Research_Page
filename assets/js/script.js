@@ -1,17 +1,26 @@
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-item');
-const totalSlides = slides.length;
+let currentPanel = 1;
+const panelWidth = 1100; // Largura de cada painel
+const totalPanels = 4; // Número total de painéis
 
-function moveSlide(step) {
-    // Hide the current slide
-    slides[currentSlide].style.display = 'none';
-    
-    // Update the current slide index
-    currentSlide = (currentSlide + step + totalSlides) % totalSlides;
-    
-    // Show the new slide
-    slides[currentSlide].style.display = 'block';
+function changePanel(direction) {
+    currentPanel += direction;
+
+    if (currentPanel < 1) {
+        currentPanel = totalPanels;
+    } else if (currentPanel > totalPanels) {
+        currentPanel = 1;
+    }
+
+    updateCarousel();
 }
 
-// Initialize: Show the first image
-slides[currentSlide].style.display = 'block';
+function updateCarousel() {
+    const carousel = document.getElementById('carousel');
+    const panelContainer = document.querySelector('.carousel-container');
+    const translateValue = -panelWidth * (currentPanel - 1);
+    carousel.style.transform = `translateX(${translateValue}px)`;
+    panelContainer.style.width = `${panelWidth}px`; // Ajuste a largura do contêiner para mostrar apenas um painel
+}
+
+// Chame a função updateCarousel inicialmente para garantir que o carrossel inicie corretamente
+updateCarousel();
