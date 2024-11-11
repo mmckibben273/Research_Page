@@ -1,11 +1,17 @@
-function openLightbox(imageSrc) {
-    // Set the image source of the lightbox to the clicked image
-    document.getElementById('lightbox-img').src = imageSrc;
-    // Display the lightbox
-    document.getElementById('lightbox').style.display = 'flex';
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-item');
+const totalSlides = slides.length;
+
+function moveSlide(step) {
+    // Hide the current slide
+    slides[currentSlide].style.display = 'none';
+    
+    // Update the current slide index
+    currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+    
+    // Show the new slide
+    slides[currentSlide].style.display = 'block';
 }
 
-function closeLightbox() {
-    // Hide the lightbox when clicked
-    document.getElementById('lightbox').style.display = 'none';
-}
+// Initialize: Show the first image
+slides[currentSlide].style.display = 'block';
