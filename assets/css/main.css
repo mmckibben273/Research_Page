@@ -1648,12 +1648,7 @@ button {
 		opacity: 0;
 	}
 /* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f2f2f2; /* Cor de fundo do corpo da página */
-    color: #333; /* Cor do texto padrão */
-}
+
 
 .carousel-container {
     position: relative;
